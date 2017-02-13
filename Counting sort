@@ -1,0 +1,38 @@
+void sort(int values[], int n)
+{
+    //Check if the size of the array is non negative
+    if (n <= 0)
+    {
+        return;
+    }
+    
+    //initialize an array, 65536 is the biggest number possible
+    int count[65536];
+    
+    //count the number of times each number between 0 and 65536 appear
+    for (int i = 0; i<n; i++)
+    {
+        count[values[i]]++;
+    }
+    
+    // this counter will help recreate the array values in order
+    int count_index = 0;
+    
+    //Iterate through count[] to recreate values[]
+    for (int i = 0; i<n; i++)
+    {
+        while ( count[i] > 0 )
+        {
+            values[count_index] = i;
+            count[i]--;
+            count_index++;
+        }
+    }
+    
+    // print the array values on the screen
+    for (int i = 0; i<n; i++)
+    {
+        printf("\n %d", values[i]);
+    }
+    return;
+}
