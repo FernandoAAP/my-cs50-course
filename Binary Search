@@ -1,0 +1,33 @@
+// Binary Search
+
+//Usage: search(int value, int values[], int n)
+
+//Return 1 : could find the element
+//Return 0 : couldn't find the element
+
+bool search(int value, int values[], int n)
+{
+    //Starting points
+    int right = n, left = 0, middle;
+    
+    //Repeat the iteration while the size of the searching branch is still bigger or equal to 0
+    while (right - left >= 0)
+    {
+        middle = (right + left)/2;
+        if (values[middle] == value)
+        {
+            return 1;
+        }
+        else if (values[middle] > value)
+        {
+            right = middle -1;
+            printf("\n%d %d", left, right);
+        }
+        else if (values[middle] < value)
+        {
+            left = middle +1;
+            printf("\n%d %d", left, right);
+        }
+    }
+    return 0;
+}
