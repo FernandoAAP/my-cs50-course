@@ -1,0 +1,69 @@
+#include <cs50.h>
+#include <stdio.h>
+#include <string.h>
+
+const int MAX = 1000;
+
+void sort(int values[], int n);
+
+int main(void)
+{
+    // Creates a haystack to receive the array of numbers
+    int size;
+    int haystack[MAX];
+    
+    for(size = 0; size < MAX; size++)
+    {
+        printf("\nheystack[%d]: ",size);
+        int num = get_int();
+        
+        //quit this loop if the const int INT_MAX is given with the shortcut ctrl+d
+        if (num == INT_MAX)
+        {
+            break;
+        }
+        
+        haystack[size] = num;
+    }
+    printf("\n");
+    
+    sort(haystack, size);
+    
+    //Print on the screen the sorted array
+    printf("\n");
+    for(int i = 0; i<size; i++)
+    {
+        printf(" %d,",haystack[i]);
+    }
+}
+
+void sort(int values[], int n)
+{
+    int min, num_min, i = 0, j = 0;
+    
+    
+    for (i = 0; i<n-1; i++)
+    {
+        min = i+1;
+        
+        //Select the minimun value:
+        //min is the index for the minimun value
+        //Minimun value is values[min]
+        for (j = i+1; j<n;j++)
+        {
+            if(values[j]<values[min])
+            {
+                min = j;
+            }
+        }
+        //Check if the value at i is really bigger than the min value selected 
+        if(values[i]>values[min])
+        {
+            num_min = values[min];
+            values[min] = values[i];
+            values[i] = num_min;
+        }
+        
+    }
+    return;
+}
